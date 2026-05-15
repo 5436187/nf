@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Legal Consult | Expert Advocate Services</title>
+    <meta name="description" content="Top legal consultancy in Hyderabad. Get immediate help for mutual divorce, legal forms, and property disputes. Book a consultation and get a call back instantly.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .modal-active {
+            overflow: hidden;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e3a8a;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans smooth-scroll">
+
+    <!-- Chosen Palette: Navy Blue (#1e3a8a), Gold/Amber (#b45309), Off-White (#f8fafc), Dark Slate (#0f172a) -->
+    <!-- Application Structure Plan: The SPA is structured as a high-conversion landing page. 1. Sticky Header for quick navigation. 2. Hero Section with immediate Value Proposition and primary CTA to capture urgent needs. 3. Quick Lead Capture Form above the fold for users who just want to be contacted. 4. Services Grid allowing users to select specific legal issues (Mutual Divorce, etc.) and seamlessly transition into the payment/booking modal. 5. Vlogs Section to build authority and trust through daily content. 6. Track Record (Data Viz) to provide social proof. 7. Developer Roadmap modal hidden in footer to address the prompt's specific request for architectural guidance. This structure maps directly to the user's request for leads, payments, video content, and SEO performance. -->
+    <!-- Visualization & Content Choices: Report Info: Legal Success Metrics -> Goal: Build Trust -> Viz/Presentation Method: Doughnut Chart (Chart.js) -> Interaction: Hover tooltips for detailed stats -> Justification: Shows expertise in specific areas visually -> Library/Method: Chart.js Canvas implementation. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav class="fixed w-full bg-slate-900 text-white z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">⚖️</span>
+                    <span class="font-bold text-xl tracking-wider">HYD LAW</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#services" class="hover:text-amber-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="#vlogs" class="hover:text-amber-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Daily Vlogs</a>
+                        <a href="#stats" class="hover:text-amber-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Our Record</a>
+                        <button onclick="openConsultModal('General Consultation', 999)" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">Book Consult</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Expert Legal Counsel in Hyderabad. <span class="text-amber-500">Immediate Action.</span></h1>
+                <p class="text-lg md:text-xl text-slate-300 mb-8">Specializing in Mutual Divorce, Property Disputes, and Corporate Legal Forms. Pay a flat consultancy fee online and receive a call within 15 minutes.</p>
+                <div class="flex gap-4">
+                    <button onclick="openConsultModal('Priority Consultation', 1499)" class="bg-amber-600 hover:bg-amber-700 px-6 py-3 rounded-lg font-bold text-lg shadow-lg transition-transform transform hover:-translate-y-1">Get Immediate Help</button>
+                    <a href="#services" class="bg-transparent border border-slate-400 hover:border-white px-6 py-3 rounded-lg font-bold text-lg transition-colors">Explore Services</a>
+                </div>
+            </div>
+            <div class="bg-white text-slate-900 p-6 md:p-8 rounded-xl shadow-2xl">
+                <h2 class="text-2xl font-bold mb-2">Request a Callback</h2>
+                <p class="text-sm text-slate-500 mb-6">Submit your details and our team will evaluate your case.</p>
+                <form id="leadForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Full Name</label>
+                        <input type="text" required class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Phone Number</label>
+                        <input type="tel" required class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Case Type</label>
+                        <select class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option>Mutual Divorce</option>
+                            <option>Property Dispute</option>
+                            <option>Legal Documentation</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded transition-colors">Submit Enquiry</button>
+                    <div id="leadSuccessMsg" class="hidden text-green-600 font-semibold text-center mt-2">Enquiry received! We will call you shortly.</div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900">Our Legal Services</h2>
+                <p class="mt-4 text-lg text-slate-600">Select a service to book a consultation and secure immediate legal guidance.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100">
+                    <div class="text-4xl mb-4">🤝</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Mutual Divorce</h3>
+                    <p class="text-slate-600 mb-6 h-20">Streamlined, conflict-free divorce processing. We handle the paperwork, counseling requirements, and court representation.</p>
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                        <span class="font-bold text-lg text-blue-900">₹999 Fee</span>
+                        <button onclick="openConsultModal('Mutual Divorce Consultation', 999)" class="text-amber-600 font-bold hover:text-amber-800">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100">
+                    <div class="text-4xl mb-4">📄</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Legal Forms & Drafts</h3>
+                    <p class="text-slate-600 mb-6 h-20">Custom legal drafting including lease agreements, NDAs, power of attorney, and business incorporation documents.</p>
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                        <span class="font-bold text-lg text-blue-900">₹499 Fee</span>
+                        <button onclick="openConsultModal('Legal Forms Consultation', 499)" class="text-amber-600 font-bold hover:text-amber-800">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100">
+                    <div class="text-4xl mb-4">🏢</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Property & Civil</h3>
+                    <p class="text-slate-600 mb-6 h-20">Expert advice on real estate disputes, title verification, inheritance laws, and civil litigation in Hyderabad courts.</p>
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                        <span class="font-bold text-lg text-blue-900">₹1499 Fee</span>
+                        <button onclick="openConsultModal('Property/Civil Consultation', 1499)" class="text-amber-600 font-bold hover:text-amber-800">Book Now &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vlogs" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12 border-b border-slate-200 pb-4">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Daily Legal Vlogs</h2>
+                    <p class="mt-2 text-lg text-slate-600">Stay informed about your rights and recent law changes in India.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vlogContainer">
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="py-16 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold">Our Track Record in Hyderabad</h2>
+                <p class="mt-4 text-lg text-slate-300">Over 1,200 successful consultations and case resolutions last year.</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="chart-container bg-slate-800 p-4 rounded-xl shadow-inner">
+                        <canvas id="casesChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 space-y-6">
+                    <div class="bg-slate-800 p-6 rounded-lg border-l-4 border-amber-500">
+                        <div class="text-4xl font-bold text-amber-500 mb-2">98%</div>
+                        <div class="text-lg font-semibold">Success Rate in Mutual Divorces</div>
+                        <p class="text-sm text-slate-400 mt-2">Achieved through pre-litigation counseling and perfect documentation.</p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="text-4xl font-bold text-blue-500 mb-2">&lt; 15m</div>
+                        <div class="text-lg font-semibold">Average Callback Time</div>
+                        <p class="text-sm text-slate-400 mt-2">After successful payment, our paralegal team connects instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="consultModal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all">
+            <div class="bg-blue-900 p-4 text-white flex justify-between items-center">
+                <h3 class="text-xl font-bold">Secure Your Consultation</h3>
+                <button onclick="closeConsultModal()" class="text-white hover:text-amber-400 text-2xl font-bold">&times;</button>
+            </div>
+            <div class="p-6" id="modalContent">
+                <div class="mb-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-slate-600 font-semibold">Service:</span>
+                        <span id="modalServiceName" class="text-slate-900 font-bold text-right">Service Name</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-600 font-semibold">Consultancy Fee:</span>
+                        <span id="modalServiceFee" class="text-blue-900 font-bold text-xl">₹0</span>
+                    </div>
+                </div>
+                <form id="paymentForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Client Phone Number</label>
+                        <input type="tel" id="payPhone" required class="block w-full px-4 py-3 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" placeholder="10-digit mobile number">
+                    </div>
+                    <div class="text-sm text-slate-500 flex items-start gap-2">
+                        <span>📞</span>
+                        <p>Upon successful payment, our legal team will call this number immediately to begin case evaluation.</p>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-lg shadow-lg text-lg flex justify-center items-center gap-2 transition-colors">
+                        <span id="payBtnText">Pay & Book Call</span>
+                        <div id="payLoader" class="loader"></div>
+                    </button>
+                    <div class="text-center text-xs text-slate-400 mt-2">
+                        🔒 Secured 256-bit encrypted payment gateway
+                    </div>
+                </form>
+            </div>
+            <div class="p-8 hidden text-center" id="modalSuccess">
+                <div class="text-6xl mb-4">✅</div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Payment Successful</h3>
+                <p class="text-slate-600 mb-6">Your transaction ID is <span class="font-mono bg-slate-100 px-2 py-1 rounded text-sm">TXN-<span id="txnId"></span></span>.</p>
+                <div class="bg-amber-100 border border-amber-300 text-amber-900 p-4 rounded-lg font-medium">
+                    Please keep your phone nearby. Our legal advisor is dialing your number right now.
+                </div>
+                <button onclick="closeConsultModal()" class="mt-6 w-full border border-slate-300 text-slate-700 font-bold py-3 rounded-lg hover:bg-slate-50 transition-colors">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="roadmapModal" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-[70] hidden overflow-y-auto">
+        <div class="max-w-4xl mx-auto my-12 bg-white rounded-xl shadow-2xl p-8">
+            <div class="flex justify-between items-center mb-8 border-b pb-4">
+                <h2 class="text-3xl font-bold text-slate-900">🚀 Developer Roadmap & Architecture Guide</h2>
+                <button onclick="toggleRoadmap()" class="text-slate-500 hover:text-red-600 text-3xl">&times;</button>
+            </div>
+            
+            <div class="space-y-8 text-slate-700">
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-100">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Phase 1: Foundation & SEO (Implemented Here)</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Semantic HTML:</strong> Proper use of headers, sections, and tags for Google crawling.</li>
+                        <li><strong>Responsive UI:</strong> Built with Tailwind CSS ensuring pixel-perfect display across all devices to reduce bounce rate.</li>
+                        <li><strong>Performance:</strong> Single Page App architecture without heavy frameworks keeps load times under 1 second.</li>
+                        <li><em>Next Step for you:</em> Add Google Analytics tracking code and register the site on Google Search Console.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-amber-50 p-6 rounded-lg border border-amber-100">
+                    <h3 class="text-xl font-bold text-amber-900 mb-2">Phase 2: Lead Generation Management</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Current State:</strong> Frontend form capture is implemented with validation.</li>
+                        <li><strong>Backend Integration:</strong> Connect the form to a free service like <code>Formspree.io</code> or <code>Web3Forms</code>. This requires simply changing the <code>&lt;form action=""&gt;</code> attribute.</li>
+                        <li><strong>CRM Hook:</strong> For advanced usage, use Zapier to catch form submissions and drop them into a Google Sheet or HubSpot CRM for the legal team.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 p-6 rounded-lg border border-green-100">
+                    <h3 class="text-xl font-bold text-green-900 mb-2">Phase 3: Real Payment Gateway Setup</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Current State:</strong> High-fidelity mock UI showing the exact user flow for conversions.</li>
+                        <li><strong>Integration Guide (Razorpay/Stripe):</strong> 
+                            1. Create a business account on Razorpay (best for India).<br>
+                            2. Use their <em>Payment Links</em> API or drop-in frontend checkout widget.<br>
+                            3. On successful JS callback from Razorpay, trigger the UI success screen shown in this template.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-lg border border-purple-100">
+                    <h3 class="text-xl font-bold text-purple-900 mb-2">Phase 4: Dynamic Vlogs (CMS)</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Architecture:</strong> Instead of hardcoding videos, set up a free Headless CMS like Strapi or Sanity.</li>
+                        <li><strong>Flow:</strong> Lawyer uploads YouTube link to CMS -> This frontend fetches the JSON list on page load -> Renders the grid automatically.</li>
+                        <li><strong>Marketing:</strong> Ensure vlog descriptions contain long-tail keywords (e.g., "How to file mutual divorce in Kukatpally").</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <span class="text-2xl">⚖️</span>
+                    <span class="font-bold text-xl tracking-wider">HYD LAW</span>
+                </div>
+                <p class="text-sm">Premium legal consultancy in Hyderabad. Fast, reliable, and strictly confidential. Serving clients across Telangana.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#services" class="hover:text-amber-500">Practice Areas</a></li>
+                    <li><a href="#vlogs" class="hover:text-amber-500">Legal Resources & Vlogs</a></li>
+                    <li><a href="#" class="hover:text-amber-500">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-amber-500">Terms of Consultation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Contact Info</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>📍 Banjara Hills, Hyderabad, TS</li>
+                    <li>📞 Support Number provided upon booking</li>
+                    <li>✉️ legal@hydlawconsult.example.com</li>
+                </ul>
+                <button onclick="toggleRoadmap()" class="mt-4 border border-slate-700 hover:bg-slate-800 text-xs py-1 px-3 rounded">View Developer Roadmap</button>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-slate-800 text-sm text-center">
+            &copy; 2026 Hyd Law Consultancy. All rights reserved. Not an attorney-client relationship until fees are paid.
+        </div>
+    </footer>
+
+    <script>
+        const vlogsData = [
+            { id: 1, title: "Step by Step: Mutual Divorce Process in Telangana", date: "Oct 24, 2026", duration: "5:30", views: "1.2k" },
+            { id: 2, title: "Property Registration Rules Changed? Watch This.", date: "Oct 22, 2026", duration: "8:15", views: "3.4k" },
+            { id: 3, title: "How to draft a watertight Rental Agreement", date: "Oct 20, 2026", duration: "4:45", views: "856" },
+            { id: 4, title: "Understanding Alimony in Indian Courts", date: "Oct 18, 2026", duration: "10:20", views: "2.1k" },
+            { id: 5, title: "Cheque Bounce Cases: Immediate Legal Steps", date: "Oct 15, 2026", duration: "6:10", views: "1.5k" },
+            { id: 6, title: "Startup Founders: Essential Legal Forms", date: "Oct 12, 2026", duration: "7:50", views: "920" }
+        ];
+
+        function renderVlogs() {
+            const container = document.getElementById('vlogContainer');
+            let html = '';
+            vlogsData.forEach(vlog => {
+                html += `
+                <div class="bg-white rounded-xl shadow border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                    <div class="bg-slate-200 h-48 relative flex items-center justify-center">
+                        <div class="absolute inset-0 bg-blue-900 opacity-10 group-hover:opacity-0 transition-opacity"></div>
+                        <span class="text-5xl opacity-80 group-hover:scale-110 transition-transform text-red-600">▶️</span>
+                        <span class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">${vlog.duration}</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-900 mb-2 leading-tight">${vlog.title}</h3>
+                        <div class="flex justify-between text-xs text-slate-500">
+                            <span>📅 ${vlog.date}</span>
+                            <span>👁️ ${vlog.views} views</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = "Processing...";
+            btn.disabled = true;
+            btn.classList.add('opacity-70');
+            
+            setTimeout(() => {
+                btn.classList.add('hidden');
+                document.getElementById('leadSuccessMsg').classList.remove('hidden');
+            }, 1500);
+        });
+
+        const modal = document.getElementById('consultModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalSuccess = document.getElementById('modalSuccess');
+
+        function openConsultModal(serviceName, fee) {
+            document.getElementById('modalServiceName').innerText = serviceName;
+            document.getElementById('modalServiceFee').innerText = '₹' + fee;
+            modalContent.classList.remove('hidden');
+            modalSuccess.classList.add('hidden');
+            document.getElementById('paymentForm').reset();
+            
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeConsultModal() {
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-active');
+            
+            const btnText = document.getElementById('payBtnText');
+            const loader = document.getElementById('payLoader');
+            btnText.style.display = 'block';
+            loader.style.display = 'none';
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('payPhone').value;
+            if(phone.length < 10) { alert("Please enter a valid phone number"); return; }
+
+            const btnText = document.getElementById('payBtnText');
+            const loader = document.getElementById('payLoader');
+            const btn = this.querySelector('button[type="submit"]');
+            
+            btnText.style.display = 'none';
+            loader.style.display = 'block';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('txnId').innerText = Math.floor(10000000 + Math.random() * 90000000);
+                modalContent.classList.add('hidden');
+                modalSuccess.classList.remove('hidden');
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        function toggleRoadmap() {
+            const rModal = document.getElementById('roadmapModal');
+            if(rModal.classList.contains('hidden')) {
+                rModal.classList.remove('hidden');
+                document.body.classList.add('modal-active');
+            } else {
+                rModal.classList.add('hidden');
+                document.body.classList.remove('modal-active');
+            }
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('casesChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mutual Divorce', 'Civil/Property', 'Legal Drafting', 'Corporate Law'],
+                    datasets: [{
+                        data: [45, 25, 20, 10],
+                        backgroundColor: [
+                            '#3b82f6', 
+                            '#f59e0b', 
+                            '#10b981', 
+                            '#6366f1'  
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: '#e2e8f0',
+                                font: {
+                                    size: 14,
+                                    family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ' + context.parsed + '% of cases';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVlogs();
+            initChart();
+        });
+    </script>
+</body>
+</html>
